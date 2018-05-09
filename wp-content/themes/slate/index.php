@@ -36,10 +36,10 @@
 		<section class="spotlight">
 			<div class="content">
 				<h2>Обо мне</h2>
-				<p>Четверикова Натали</p>
-				<p>Я отличный дизайнер!</p>
+				<p><?= get_option('about_full_name');?></p>
+				<p><?= get_option('about_about_me');?></p>
 			</div>
-			<span class="image"><img src="images/pic07.jpg" alt="" /></span>
+			<span class="image"><img src="<?= get_option('about_photo');?>" alt="" /></span>
 		</section>
 	</div>
 </section>
@@ -48,21 +48,29 @@
 <section id="two" class="wrapper content-pad">
 	<div class="inner">
 		<div class="features">
-			<section class="content">
-				<span class="icon-wrapper major"><span class="icon fa-pencil"></span></span>
-				<h3>Praesent sed donec</h3>
-				<p>Proin consequat luctus elit, nec blandit tellus ut volutpat magna. mi euismod elementum lectus et consequat etiam lorem etiam sed tempus. Feugiat veroeros lorem ipsum dolor.</p>
-			</section>
-			<section class="content">
-				<span class="icon-wrapper major"><span class="icon fa-paper-plane"></span></span>
-				<h3>Commodo mollis</h3>
-				<p>Pellentesque, ornare sapien quis, tristique ante. Proin nec facilisis odio. Integer elementum nunc nec leo interdum, non tristique eros laoreet. Integer vitae erat suscipit commodo.</p>
-			</section>
-			<section class="content">
-				<span class="icon-wrapper major"><span class="icon fa-cloud"></span></span>
-				<h3>Magnis curabitur</h3>
-				<p>Duis vulputate sit amet metus quis facilisis. Sed dapibus neque erat fringilla tincidunt. Nullam sapien et sapien, iaculis ac varius ultrices nec metus. Aenean ultricies magna.</p>
-			</section>
+
+
+			<?php
+			$args = array(
+				'posts_per_page' => 999,
+				'post_type' => array( 'work_type' ),
+			);
+			$posts = new WP_Query( $args );
+			while( $posts->have_posts() ) :
+				$posts->the_post();
+				?>
+
+				<section class="content">
+					<img src="<?php echo get_post_meta( get_the_id(), 'work_type_icon', true); ?>" alt="" />
+					<h3><?php the_title(); ?></h3>
+					<p><?php the_content(); ?></p>
+				</section>
+
+				<?php
+			endwhile;
+			wp_reset_postdata();
+			?>
+
 		</div>
 	</div>
 </section>

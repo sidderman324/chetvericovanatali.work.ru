@@ -21,7 +21,6 @@ add_theme_support( 'post-thumbnails' );
 
 
 // Добавление главного слайдера
-// Список типов работ. Карточки с анимацией.
 add_action( 'init', 'slider_item' ); // Использовать функцию только внутри хука init
 function slider_item() {
 	$labels = array(
@@ -68,6 +67,54 @@ $metabox = array(
 new trueMetaBox( $metabox );
 
 
+
+
+
+// Добавление типов работ
+// Список типов работ. Карточки с анимацией.
+add_action( 'init', 'work_type_item' ); // Использовать функцию только внутри хука init
+function work_type_item() {
+	$labels = array(
+		'name' => 'Тип',
+		'singular_name' => 'Тип',
+		'add_new' => 'Добавить тип работы',
+		'add_new_item' => 'Добавить новый тип',
+		'edit_item' => 'Редактировать тип',
+		'new_item' => 'Новый тип',
+		'all_items' => 'Все типы',
+		'view_item' => 'Просмотр типов на сайте',
+		'search_items' => 'Искать типы',
+		'not_found' => 'Типов работ не найдено.',
+		'menu_name' => 'Типы работ'
+	);
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'menu_icon' => 'dashicons-editor-ul',
+		'menu_position' => 5,
+		'has_archive' => true,
+		'supports' => array( 'title', 'editor')
+	);
+	register_post_type( 'work_type', $args);
+}
+
+
+$metabox = array(
+	'id' =>	'work_type',
+	'capability' => 'edit_posts',
+	'name' => 'Фото главного слайдера',
+	'post_type' => array('work_type'),
+	'priority' => 'high',
+	'args' => array(
+		array(
+			'id'	=> 'icon',
+			'label' => 'Иконка',
+			'type'	=> 'file',
+			'placeholder' 	=> 'Выберите иконку'
+		)
+	)
+);
+new trueMetaBox( $metabox );
 
 
 

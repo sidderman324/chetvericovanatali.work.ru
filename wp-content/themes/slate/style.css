@@ -1,0 +1,58 @@
+.spotlight .image {
+  height: 350px;
+  width: 350px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.spotlight .image img {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  left: 50%;
+  width: 100%;
+}
+.spotlight {
+  width: 75%;
+  margin: 0 auto;
+}
+#one .spotlight {
+  -ms-align-items: center;
+  align-items: center;
+}
+.spotlight .content {
+  width: 50%;
+  height: fit-content;
+}
+@media screen and (max-width: 1280px) {
+  #banner {
+      min-height: 35em;
+      height: 100vh;
+  }
+}
+#banner {
+  background-color: transparent;
+}
+
+#banner > article {
+  height: 100vh;
+  background-position: center !important;
+}
+#banner > article .inner {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+}
+.wrapper.content-pad .content {
+  padding: 2em 3em 1em 1em;
+  text-align: center;
+}
+.wrapper.content-pad .content img {
+  width: 60px;
+  height: 60px;
+}
+#two > h3:after {
+  left: 50%;
+  transform: translateX(-50%);
+}
