@@ -18,6 +18,22 @@ function styleConnect(){
 
 add_theme_support( 'post-thumbnails' );
 
+remove_action( 'wp_head', 'wlwmanifest_link' );
+remove_action( 'wp_head', 'rsd_link' );
+remove_action( 'wp_head', 'wp_generator' );
+
+add_action("wp_head", "wp_head_meta_description", 1);
+
+function wp_head_meta_description() {
+	global $post;
+	if( is_single() ) {
+		echo "<meta name=\"description\" value=\"" . esc_attr( get_post_meta( $post->ID, 'portfolio_description', true ) ) ."\" />\n\r";
+		echo "<title>" . esc_attr( get_post_meta( $post->ID, 'portfolio_title', true ) ) ."</title>\n\r";
+	} elseif( is_front_page() ) {
+		echo "<meta name=\"description\" value=\"" . esc_attr( get_post_meta( $post->ID, 'about_description', true ) ) ."\" />\n\r";
+		echo "<title>" . esc_attr( get_post_meta( $post->ID, 'about_title', true ) ) ."</title>\n\r";
+	}
+}
 
 
 // Добавление главного слайдера
@@ -119,37 +135,25 @@ new trueMetaBox( $metabox );
 
 
 
-
-
-
-
 $options = array(
 	// yes, slug is the part of the option name, so, to get the value, use
 	// get_option( '{SLUG}_{ID}' );
 	// get_option( 'styles_headercolor' );
 	'slug'	=>	'about',
-
 	// h2 title on your settings page
 	'title' => 'Описание и контактая информация',
-
 	// this displayed in admin menu, try to make it short
 	'menuname' => 'Обо мне и контакты',
-
 	'capability'=>	'manage_options',
-
 	// WordPress option pages consist of sections, so,
 	// at first we create an array of sections and add fields in each section
 	'sections' => array(
-
 		// first section
 		array(
-
 			// section ID isn't used anywhere, but it is required
 			'id' => 'personal',
-
 			// section name is displayed as h2 heading
 			'name' => 'Обо мне',
-
 			// and only now the array of fields
 			'fields' => array(
 				array(
@@ -181,6 +185,7 @@ $options = array(
 					'id'	=> 'phone',
 					'label' => 'Телефон',
 					'type'	=> 'text',
+					'placeholder' => 'В формате +7 911-222-333-4',
 				),
 				array(
 					'id'	=> 'mail',
@@ -191,6 +196,32 @@ $options = array(
 					'id'	=> 'instagram',
 					'label' => 'Инстаграм',
 					'type'	=> 'text',
+				),
+				array(
+					'id'	=> 'facebook',
+					'label' => 'Facebook',
+					'type'	=> 'text',
+				)
+			)
+		),
+
+		array(
+			'id' => 'meta',
+			'name' => 'Мета-теги главной страницы',
+			'fields' => array(
+				array(
+					'id'	=> 'title',
+					'label' => 'Title',
+					'description' => 'Введите здесь Title страницы',
+					'type'	=> 'text',
+					'placeholder' 	=> 'Введите Title'
+				),
+				array(
+					'id'	=> 'description',
+					'label' => 'Description',
+					'description' => 'Введите здесь Description страницы',
+					'type'	=> 'text',
+					'placeholder' 	=> 'Введите Description'
 				)
 			)
 		)
@@ -198,41 +229,82 @@ $options = array(
 );
 
 if( class_exists( 'trueOptionspage' ) )
-	new trueOptionspage( $options );
+new trueOptionspage( $options );
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function show_current_time( $attr ) {
-	$param = shortcode_atts ( array (
-		'format' => 'h:i:s'
-	), $attr );
-	return date( $param['format'] );
+// Добавление главного слайдера
+add_action( 'init', 'portfolio_item' ); // Использовать функцию только внутри хука init
+function portfolio_item() {
+	$labels = array(
+		'name' => 'Портфолио',
+		'singular_name' => 'Работу портфолио',
+		'add_new' => 'Добавить работу',
+		'add_new_item' => 'Добавить работу',
+		'edit_item' => 'Редактировать работу портфолио',
+		'new_item' => 'Новая работа',
+		'all_items' => 'Все работы портфолио',
+		'view_item' => 'Просмотр работ на сайте',
+		'search_items' => 'Искать работы',
+		'not_found' => 'Работ портфолио не найдено.',
+		'not_found_in_trash' => 'В корзине нет работ.',
+		'menu_name' => 'Портфолио'
+	);
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'menu_icon' => 'dashicons-format-image',
+		'menu_position' => 4,
+		'has_archive' => true,
+		'supports' => array( 'title', 'editor', 'thumbnail','page-attributes'),
+		// 'taxonomies' => array('post_tag','category')
+	);
+	register_post_type( 'portfolio', $args);
 }
-add_shortcode('time','show_current_time');
 
-function heading( $atts, $content ) {
-	return '<h2 class="p1">'. $content .'</h2>';
-}
-add_shortcode('h2','heading');
+
+
+
+$metabox = array(
+	'id' =>	'portfolio',
+	'capability' => 'edit_posts',
+	'name' => 'Дополнительная информация о записи',
+	'post_type' => array('portfolio'),
+	'priority' => 'high',
+	'args' => array(
+		array(
+			'id'	=> 'main_photo',
+			'label' => 'Заглавное фото записи',
+			'type'	=> 'file',
+			'placeholder' 	=> 'Заглавное фото записи'
+		),
+		array(
+			'id'	=> 'title',
+			'label' => 'Title',
+			'description' => 'Введите здесь Title страницы',
+			'type'	=> 'text',
+			'placeholder' 	=> 'Введите Title'
+		),
+		array(
+			'id'	=> 'description',
+			'label' => 'Description',
+			'description' => 'Введите здесь Description страницы',
+			'type'	=> 'text',
+			'placeholder' 	=> 'Введите Description'
+		),
+	)
+);
+new trueMetaBox( $metabox );
+
+
+
+
+
+
+
+
+
+
+
 
 function loggined_user( $atts, $content = "Зарегистрируйтесь, чтобы увидеть это!") {
 	if (is_user_logged_in()) {
@@ -270,10 +342,16 @@ function login_customize() {
 add_action('login_head','login_customize');
 
 /* Удаление пунктов меню в админке */
-function remove_admin_menu() {
-	// remove_menu_page('themes.php');
+function remove_admin_submenu_items() {
+	remove_menu_page( 'edit.php' );
+	remove_menu_page( 'edit.php?post_type=page' );
+	remove_menu_page( 'link-manager.php' );
+	remove_menu_page( 'edit-comments.php' );
+	remove_menu_page( 'themes.php' );
+	// remove_menu_page( 'plugins.php' );
+	remove_menu_page( 'users.php' );
 }
-add_action('admin_menu', 'remove_admin_menu');
+add_action( 'admin_menu', 'remove_admin_submenu_items');
 
 /* Редактирование админки */
 function true_alert() {
