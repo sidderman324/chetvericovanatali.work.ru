@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Untitled</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&amp;subset=cyrillic" rel="stylesheet"> -->
@@ -9,10 +8,10 @@
 	<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=cyrillic" rel="stylesheet"> -->
 	<?php wp_head(); ?>
 
-	<title><?php echo get_post_meta( get_the_id(), 'portfolio_title', true); ?></title>
+	<title><?php the_title(); ?></title>
 
 </head>
-<body>
+<body style="background-image: url('<?= get_option('about_main_bgr');?>');">
 
 	<!-- Header -->
 	<header id="header" class="alt">

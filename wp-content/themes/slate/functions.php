@@ -35,6 +35,13 @@ function wp_head_meta_description() {
 	}
 }
 
+/*
+ * Включаем поддержку кастомных полей
+ */
+function true_custom_fields() {
+    add_post_type_support( 'post', 'custom-fields'); // в качестве первого параметра укажите название типа поста
+}
+add_action('init', 'true_custom_fields');
 
 // Добавление главного слайдера
 add_action( 'init', 'slider_item' ); // Использовать функцию только внутри хука init
@@ -68,7 +75,7 @@ function slider_item() {
 $metabox = array(
 	'id' =>	'slider',
 	'capability' => 'edit_posts',
-	'name' => 'Фото главного слайдера',
+	'name' => 'Главный слайдер',
 	'post_type' => array('slider'),
 	'priority' => 'high',
 	'args' => array(
@@ -77,7 +84,13 @@ $metabox = array(
 			'label' => 'Фоновая фотография',
 			'type'	=> 'file',
 			'placeholder' 	=> 'Фоновая фотография'
-		)
+		),
+		array(
+			'id'	=> 'text',
+			'label' => 'Описание слайда',
+			'type'	=> 'text',
+			'placeholder' 	=> 'Описание слайда'
+		),
 	)
 );
 new trueMetaBox( $metabox );
@@ -173,6 +186,16 @@ $options = array(
 					'label'			=> 'Фотография',
 					'type'			=> 'file', // table of types is above
 				),
+				array(
+					'id'			=> 'main_bgr',
+					'label'			=> 'Фотография фона',
+					'type'			=> 'file', // table of types is above
+				),
+				array(
+					'id'			=> 'main_color',
+					'label'			=> 'Цвет фона',
+					'type'			=> 'color', // table of types is above
+				),
 			)
 		),
 
@@ -229,7 +252,7 @@ $options = array(
 );
 
 if( class_exists( 'trueOptionspage' ) )
-new trueOptionspage( $options );
+	new trueOptionspage( $options );
 
 
 // Добавление главного слайдера
@@ -255,13 +278,12 @@ function portfolio_item() {
 		'menu_icon' => 'dashicons-format-image',
 		'menu_position' => 4,
 		'has_archive' => true,
-		'supports' => array( 'title', 'editor', 'thumbnail','page-attributes'),
+		'show_in_rest' => true,
+		'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt')
 		// 'taxonomies' => array('post_tag','category')
 	);
 	register_post_type( 'portfolio', $args);
 }
-
-
 
 
 $metabox = array(
@@ -320,7 +342,7 @@ add_shortcode('user', 'loggined_user');
 function do_excerpt($string, $word_limit) {
 	$words = explode(' ', $string, ($word_limit + 1));
 	if (count($words) > $word_limit)
-	array_pop($words);
+		array_pop($words);
 	echo implode(' ', $words).' ...';
 }
 
@@ -348,7 +370,7 @@ function remove_admin_submenu_items() {
 	remove_menu_page( 'link-manager.php' );
 	remove_menu_page( 'edit-comments.php' );
 	remove_menu_page( 'themes.php' );
-	// remove_menu_page( 'plugins.php' );
+	remove_menu_page( 'plugins.php' );
 	remove_menu_page( 'users.php' );
 }
 add_action( 'admin_menu', 'remove_admin_submenu_items');

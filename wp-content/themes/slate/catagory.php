@@ -5,7 +5,6 @@ Template Post Type: post, page, portfolio
 */
 ?>
 <?php get_header(); ?>
-21312312312312
 <section class="wrapper" id="posts" style="padding-top: 100px;">
 	<div class="inner">
 

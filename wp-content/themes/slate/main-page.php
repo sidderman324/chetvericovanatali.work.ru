@@ -20,7 +20,8 @@
 		<article>
 			<img src="<?php echo get_post_meta( get_the_id(), 'slider_bgr_image', true); ?>" alt="" />
 			<div class="inner">
-				<h2><?php the_title(); ?></h2>
+				<h2 style="color: <?php echo get_post_meta( get_the_id(), 'color', true); ?>"><?php the_title(); ?></h2>
+				<p style="color: <?php echo get_post_meta( get_the_id(), 'color', true); ?>"><?php echo get_post_meta( get_the_id(), 'slider_text', true); ?></p>
 			</div>
 		</article>
 		<?php
@@ -61,7 +62,7 @@
 				?>
 
 				<section class="content">
-					<img src="<?php echo get_post_meta( get_the_id(), 'work_type_icon', true); ?>" alt="" />
+					<!-- <img src="<?php echo get_post_meta( get_the_id(), 'work_type_icon', true); ?>" alt="" /> -->
 					<h3><?php the_title(); ?></h3>
 					<p><?php the_content(); ?></p>
 				</section>
@@ -95,7 +96,7 @@
 					<span class="image"><img src="<?php the_post_thumbnail_url(); ?>" alt="" /></span>
 					<div class="content">
 						<h3><?php the_title(); ?></h3>
-						<p><?php the_excerpt(); ?></p>
+						<?php the_excerpt(); ?>
 						<ul class="actions">
 							<li><a href="<?php the_permalink(); ?>" class="button">Подробнее</a></li>
 						</ul>
