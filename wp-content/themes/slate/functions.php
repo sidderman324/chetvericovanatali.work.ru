@@ -82,7 +82,7 @@ $metabox = array(
 		array(
 			'id'	=> 'bgr_image',
 			'label' => 'Фоновая фотография',
-			'type'	=> 'file',
+			'type'	=> 'image',
 			'placeholder' 	=> 'Фоновая фотография'
 		),
 		array(
@@ -299,20 +299,20 @@ $metabox = array(
 			'type'	=> 'file',
 			'placeholder' 	=> 'Заглавное фото записи'
 		),
-		array(
-			'id'	=> 'title',
-			'label' => 'Title',
-			'description' => 'Введите здесь Title страницы',
-			'type'	=> 'text',
-			'placeholder' 	=> 'Введите Title'
-		),
-		array(
-			'id'	=> 'description',
-			'label' => 'Description',
-			'description' => 'Введите здесь Description страницы',
-			'type'	=> 'text',
-			'placeholder' 	=> 'Введите Description'
-		),
+		// array(
+		// 	'id'	=> 'title',
+		// 	'label' => 'Title',
+		// 	'description' => 'Введите здесь Title страницы',
+		// 	'type'	=> 'text',
+		// 	'placeholder' 	=> 'Введите Title'
+		// ),
+		// array(
+		// 	'id'	=> 'description',
+		// 	'label' => 'Description',
+		// 	'description' => 'Введите здесь Description страницы',
+		// 	'type'	=> 'text',
+		// 	'placeholder' 	=> 'Введите Description'
+		// ),
 	)
 );
 new trueMetaBox( $metabox );

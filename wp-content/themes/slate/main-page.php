@@ -18,7 +18,7 @@
 		$posts->the_post();
 		?>
 		<article>
-			<img src="<?php echo get_post_meta( get_the_id(), 'slider_bgr_image', true); ?>" alt="" />
+			<?php echo wp_get_attachment_image(get_post_meta( get_the_id(), 'slider_bgr_image', true), full ); ?>
 			<div class="inner">
 				<h2 style="color: <?php echo get_post_meta( get_the_id(), 'color', true); ?>"><?php the_title(); ?></h2>
 				<p style="color: <?php echo get_post_meta( get_the_id(), 'color', true); ?>"><?php echo get_post_meta( get_the_id(), 'slider_text', true); ?></p>

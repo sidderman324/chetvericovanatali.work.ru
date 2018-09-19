@@ -31,7 +31,7 @@
 <!-- Footer -->
 <footer id="footer">
 	<div class="inner">
-
+		<a href="/wp-admin/">Войти</a>
 	</div>
 </footer>
 

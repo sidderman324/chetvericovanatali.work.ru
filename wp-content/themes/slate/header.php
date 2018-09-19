@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+	<title>Портфолио - Четверикова</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&amp;subset=cyrillic" rel="stylesheet"> -->
@@ -8,7 +9,8 @@
 	<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=cyrillic" rel="stylesheet"> -->
 	<?php wp_head(); ?>
 
-	<title><?php the_title(); ?></title>
+	<!-- <title><?php the_title(); ?></title> -->
+	<meta name="mailru-domain" content="4WW1CLOX0ZnMFHSA" />
 
 </head>
 <body style="background-image: url('<?= get_option('about_main_bgr');?>');">
