@@ -4,7 +4,6 @@
 	License: pixelarity.com/license
 */
 
-
 var settings = {
 
 	banner: {
@@ -311,12 +310,20 @@ var settings = {
 			&&	$header.hasClass('alt')) {
 
 				$window.on('resize', function() { $window.trigger('scroll'); });
+				var logo = $('#logo').attr('src');
+				logo = logo.split('/')[8].split('.')[0];
 
 				$banner.scrollex({
 					bottom:		$header.outerHeight(),
-					terminate:	function() { $header.removeClass('alt'); },
-					enter:		function() { $header.addClass('alt'); },
-					leave:		function() { $header.removeClass('alt'); $header.addClass('reveal'); }
+					terminate:	function() { $header.removeClass('alt');
+					$('#logo').attr('src','https://chetverikova-design.com/wp-content/themes/slate/images/fwdpng/'+logo+'_2.png')
+					 },
+					enter:		function() { $header.addClass('alt');
+					$('#logo').attr('src','https://chetverikova-design.com/wp-content/themes/slate/images/fwdpng/'+logo+'_2.png')
+					 },
+					leave:		function() { $header.removeClass('alt'); $header.addClass('reveal');
+					$('#logo').attr('src','https://chetverikova-design.com/wp-content/themes/slate/images/fwdpng/'+logo+'.png')
+					 }
 				});
 
 			}

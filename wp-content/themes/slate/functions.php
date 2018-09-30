@@ -366,7 +366,6 @@ add_action('login_head','login_customize');
 /* Удаление пунктов меню в админке */
 function remove_admin_submenu_items() {
 	remove_menu_page( 'edit.php' );
-	remove_menu_page( 'edit.php?post_type=page' );
 	remove_menu_page( 'link-manager.php' );
 	remove_menu_page( 'edit-comments.php' );
 	remove_menu_page( 'themes.php' );
