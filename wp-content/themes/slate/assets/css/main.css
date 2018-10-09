@@ -1601,7 +1601,7 @@ body {
 
 body, input, select, textarea {
 	font-family: "Open Sans", Helvetica, sans-serif;
-	font-size: 13pt;
+	font-size: 1.5vw;
 	font-weight: 400;
 	line-height: 1.65em;
 }
@@ -1609,9 +1609,14 @@ body, input, select, textarea {
 @media screen and (max-width: 1680px) {
 
 	body, input, select, textarea {
-		font-size: 11pt;
+		font-size: 1.5vw;
 	}
 
+}
+@media screen and (max-width: 980px) {
+	body {
+		font-size: 4vw;
+	}	
 }
 
 a {
@@ -3048,7 +3053,7 @@ table.alt tbody tr td {
 /* Wrapper */
 
 .wrapper {
-	padding: 4em 0 2em 0 ;
+	padding: 7em 0 2em 0 ;
 	position: relative;
 }
 
@@ -3659,7 +3664,7 @@ table.alt tbody tr td {
 @media screen and (max-width: 1280px) {
 
 	.wrapper {
-		padding: 3em 0 1em 0 ;
+		padding: 7em 0 1em 0 ;
 	}
 
 	.wrapper > .inner {

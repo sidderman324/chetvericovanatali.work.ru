@@ -13,12 +13,13 @@
 <body style="background-image: url('<?= get_option('about_main_bgr');?>');">
 
 	<!-- Header -->
-	<header id="header" class="alt">
-		<a href="/"><img id="logo" src="<?php echo get_template_directory_uri(); ?>/images/fwdpng/3.png" alt=""></a>
+	<header id="header" class="">
+		<a href="/" id="logo_link"><img id="logo" src="<?php echo get_template_directory_uri(); ?>/images/fwdpng/1_logo.png" alt=""></a>
 		<nav id="nav">
 			<ul>
 				<li><a href="/#three">Интерьеры</a></li>
-				<li><a href="/#one">Биография</a></li>
+				<li><a href="/#one">Био</a></li>
+				<!-- <li><a href="/#one">Арт</a></li> -->
 				<li><a href="/#contact">Контакты</a></li>
 
 				<!-- <li><a href="tel:+<?php $tel = get_option('about_phone'); $replace=array('-', ' ', '+', '(', ')'); $tel = str_replace($replace, '', $tel); echo $tel; ?>"><?php echo get_option('about_phone'); ?></a></li> -->

@@ -7,7 +7,7 @@
 				<li>
 					<span class="icon-wrapper"><span class="icon fa-envelope"></span></span>
 					<h3>Email</h3>
-					<p><a href="#"><?php echo get_option('about_mail'); ?></a></p>
+					<p><a href="mailto:<?php echo get_option('about_mail'); ?>"><?php echo get_option('about_mail'); ?></a></p>
 				</li>
 				<li>
 					<span class="icon-wrapper"><span class="icon fa-instagram"></span></span>
