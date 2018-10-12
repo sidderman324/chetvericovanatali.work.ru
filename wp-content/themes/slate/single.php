@@ -7,12 +7,17 @@ Template Post Type: post, page, portfolio
 <?php the_post(); ?>
 <?php get_header(); ?>
 
-<div class="container">
-	<img src="<?php echo get_post_meta( get_the_id(), 'portfolio_main_photo', true); ?>" alt="" />
-	<div class="inner">
-		<h1><?php the_title(); ?></h1>
+<!-- Banner -->
+<section id="banner" class="swiper-container">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide">
+			<img src="<?php echo get_post_meta( get_the_id(), 'portfolio_main_photo', true); ?>" alt="" />
+			<div class="inner">
+				<h2><?php the_title(); ?></h2>
+			</div>
+		</div>
 	</div>
-</div>
+</section>
 
 <section id="" class="wrapper wrapper-single">
 	<div class="inner">

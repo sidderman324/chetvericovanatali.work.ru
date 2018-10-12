@@ -92,7 +92,7 @@
 <!-- One -->
 <section id="one" class="wrapper major-pad">
 	<div class="inner">
-		<h2>Обо мне</h2>
+		<h2>Био</h2>
 		<section class="spotlight">
 			<div class="content">
 				<!-- <p><?= get_option('about_full_name');?></p> -->

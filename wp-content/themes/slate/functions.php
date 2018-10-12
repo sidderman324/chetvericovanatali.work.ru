@@ -3,17 +3,11 @@
 add_action( 'wp_enqueue_scripts', 'styleConnect' );
 
 function styleConnect(){
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css');
 	wp_enqueue_style( 'main', get_template_directory_uri() . '/assets/css/main.css?v='.time());
-	wp_enqueue_style( 'noscript', get_template_directory_uri() . '/assets/css/noscript.css');
 	wp_enqueue_style( 'swiper', get_template_directory_uri() . '/assets/css/swiper.css');
 	wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css?v='.time());
 
 	wp_enqueue_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery.min.js');
-	wp_enqueue_script( 'dropotron', get_template_directory_uri() . '/assets/js/jquery.dropotron.min.js');
-	wp_enqueue_script( 'scrollex', get_template_directory_uri() . '/assets/js/jquery.scrollex.min.js');
-	wp_enqueue_script( 'font-awesome', get_template_directory_uri() . '/assets/js/skel.min.js');
-	wp_enqueue_script( 'util', get_template_directory_uri() . '/assets/js/util.js');
 	wp_enqueue_script( 'swiper', get_template_directory_uri() . '/assets/js/swiper.min.js');
 	wp_enqueue_script( 'mainjs', get_template_directory_uri() . '/assets/js/main.js');
 }
@@ -98,7 +92,56 @@ $metabox = array(
 new trueMetaBox( $metabox );
 
 
+/*
+ * Домполнительные поля для мета-тегов
+ */
+$metabox = array(
 
+    // ID of the metabox and custom field name prefix
+    'id' =>	'meta',
+
+    // Only users with this capability can see the metabox
+    'capability' => 'edit_posts',
+
+    // metabox title
+    'name' => 'Мета данные страницы',
+
+    // custom post types names, you can use array( 'page', 'post', 'your_type' )
+    'post_type' => array('page','portfolio'),
+
+    // metabox position: low | high | default
+    'priority' => 'high',
+
+    // array of all metabox input field and their params
+    'args' => array(
+
+        /* simple text input */
+        array(
+            'id'	=> 'title',
+            'label' => 'Title',
+            'description' => 'Title который будет отображаться для страницы',
+            'type'	=> 'text',
+        ),
+
+        /* simple text input */
+        array(
+            'id'	=> 'key',
+            'label' => 'Keywords',
+            'type'	=> 'text',
+        ),
+
+        /* simple text input */
+        array(
+            'id'	=> 'desc',
+            'label' => 'Description',
+            'type'	=> 'textarea',
+        ),
+
+    )
+
+);
+
+new trueMetaBox( $metabox );
 
 
 // Добавление типов работ

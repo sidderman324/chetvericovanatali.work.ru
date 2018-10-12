@@ -16,6 +16,20 @@ body {
 #header + #banner {
   margin-top: 0;
 }
+#three.wrapper {
+  padding-top: 5em;
+}
+#one.wrapper,#contact.wrapper {
+  padding-top: 0;
+  padding-bottom: 3.0em;
+}
+#contact.wrapper {
+  padding-bottom: 0;
+}
+#footer {
+  padding: 1em 0;
+  border-top: none !important;
+}
 .container {
   width: 90vw;
   margin: 0 auto;
@@ -42,6 +56,19 @@ body {
 .navPanelToggle {
   color: #000;
 }
+#header img {
+  left: 9em;
+  position: absolute;
+  top: 4em;
+  height: 200%;
+  transition: .6s;
+  transition-timing-function: cubic-bezier(0.7, 0.29, 0.37, 0.77);
+}
+.scrolled img {
+  height: 86% !important;
+  left: 3.3em !important;
+  top: .3em !important;
+}
 .spotlight {
   width: 100%;
   -ms-align-items: flex-start;
@@ -49,13 +76,13 @@ body {
   margin: 0 auto;
 }
 #header {
-  height: 7em;
+  height: 4em;
   width: 100vw;
   padding: .5em 3.3em;
   background-color: #f0f0f0;
   border: 0;
   box-shadow: none;
-  position: relative;
+  position: fixed;
 }
 #logo_link {
   color: rgba(0,0,0,0);
@@ -71,7 +98,7 @@ body {
   -o-flex: 2;
   flex: 2;
 }
-.content-single img {
+.content-single figure {
   padding: 1em 2em;
 }
 #one .spotlight {
@@ -84,7 +111,8 @@ body {
 }
 #banner {
   min-height: 0 !important;
-  height: 32em !important;
+  height: 100vh !important;
+  padding-top: 4em !important;
 }
 #banner {
   background-color: transparent;
@@ -114,8 +142,12 @@ body {
   padding-right: 2.3em;
 }
 .swiper-slide img {
-  width: 70%;
-  height: auto;
+  width: auto;
+  height: 86%;
+}
+.swiper-pagination {
+  text-align: right;
+  padding-right: 5.0em;
 }
 #banner > article {
   -webkit-background-size: 55%;
@@ -137,7 +169,7 @@ body {
   margin: 0 .4em;
 }
 .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
-  bottom: 3em;
+  bottom: 14vh;
 }
 .swiper-pagination-bullet-active {
   background: #fff;
@@ -230,9 +262,10 @@ body {
   white-space: nowrap;
 }
 .content p {
-  font-size: 1.3em;
+  font-size: .9em;
   width: 100%;
   text-align: left;
+  line-height: 1.1;
 }
 .content ul {
   margin-left: auto;
@@ -290,6 +323,7 @@ ul.bulleted-icons li {
   border: 0;
 }
 h1, h2, h3, h4, h5, h6, p {
+  margin-bottom: 0 !important;
   font-family: 'Alegreya Sans', sans-serif !important;
   /* font-family: 'Ubuntu Condensed', sans-serif !important; */
   /* font-family: 'Ubuntu Mono', monospace !important; */
@@ -312,7 +346,7 @@ body, input, select, textarea {
   border-radius: 50%;
 }
 ul.actions {
-  margin-top: 2em;
+  margin-top: 0em;
 }
 ul.bulleted-icons li .icon-wrapper {
   top: -4px;
@@ -320,11 +354,9 @@ ul.bulleted-icons li .icon-wrapper {
 #three h3 {
   padding-bottom: 0;
   margin-bottom: 0;
+  font-weight: 500;
 }
 
-#header img {
-  left: 0;
-}
 #header nav {
   right: 3.3em;
 }
@@ -341,6 +373,59 @@ h1:after, h2:after, h3:after, h4:after, h5:after, h6:after {
 }
 .wp-block-image img {
   width: 100%;
+  transition: .3s;
+  cursor: pointer;
+}
+.wp-block-image img:hover {
+  box-shadow: 0 0px 20px 4px rgba(0, 0, 0, .3);
+  transition: .3s;
+}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 95vh;
+  width: 90vw;
+  z-index: 10001;
+  display: none;
+  justify-content: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+.visible {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+}
+.modal img {
+  height: 100%;
+  width: auto;
+}
+.modal .close {
+  position: absolute;
+  top: -.3em;
+  right: .5em;
+  background-image: url(https://chetverikova-design.com/wp-content/themes/slate/images/close.png);
+  width: 2.5em;
+  height: 2.5em;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+}
+.modal_bg {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.3);
+  z-index: 10000;
+  display: none;
 }
 .content {
   display: -webkit-flex;
@@ -372,23 +457,59 @@ h1:after, h2:after, h3:after, h4:after, h5:after, h6:after {
   text-align: left;
   font-family: 'groteskregular' !important;
   position: relative;
-}
-#three h2:after, #one h2:after {
-  content: '';
-  display: inline-block;
-  height: 1px;
-  width: 20em;
-  position: absolute;
-  background-color: #000;
-  bottom: .1em;
-  left: 2em;
+  font-weight: 500;
 }
 .wrapper.style2 a {
  font-family: 'groteskregular' !important; 
- 
+ font-size: .7em;
+ color: #000 !important; 
+ transition: .6s;
+ transition-timing-function: cubic-bezier(0.7, 0.29, 0.37, 0.77);
+}
+/*background-image: url('https://chetverikova-design.com/wp-content/themes/slate/images/burger.png');*/
+.bulleted-icons {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  -o-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  justify-content: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+.bulleted-icons .mail, .bulleted-icons .instagram, .bulleted-icons .facebook {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-position: center;
+  margin: 0 .5em;
+  text-decoration: none;
+  border-bottom: none !important;
+}
+.bulleted-icons .mail {
+  background-image: url('https://chetverikova-design.com/wp-content/themes/slate/images/icons/mail.png');
+}
+.bulleted-icons .instagram {
+  background-image: url('https://chetverikova-design.com/wp-content/themes/slate/images/icons/instagram.png');
+}
+.bulleted-icons .facebook {
+  background-image: url('https://chetverikova-design.com/wp-content/themes/slate/images/icons/facebook.png');
+}
+.wrapper.style2 a:hover {
+  color: #464646;
+  transition: .6s;
+  transition-timing-function: cubic-bezier(0.7, 0.29, 0.37, 0.77);
 }
 .wrapper.style2 input[type="submit"], .wrapper.style2 input[type="reset"], .wrapper.style2 input[type="button"], .wrapper.style2 button, .wrapper.style2 .button {
-
+  color: #000 !important; 
 }
 #three .content {
   padding-left: 0;
@@ -407,11 +528,17 @@ h1:after, h2:after, h3:after, h4:after, h5:after, h6:after {
 #header nav > ul > li a {
   text-decoration: none;
   border-bottom: 0;
-  line-height: 7em;
+  line-height: 4em;
   font-family: 'groteskregular' !important;
-  font-size: 1.0em;
-  font-weight: 700;
+  font-size: .8em;
   color: #000;
+  transition: .6s;
+  transition-timing-function: cubic-bezier(0.7, 0.29, 0.37, 0.77);
+}
+#header nav > ul > li a:hover{
+  color: #464646;
+  transition: .6s;
+  transition-timing-function: cubic-bezier(0.7, 0.29, 0.37, 0.77);
 }
 .wrapper-single {
   padding-top: 3em;
@@ -426,6 +553,67 @@ ul li {
   padding-left: 0;
 }
 
+.page-header__burger-wrapper {
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  position: relative;
+  display: none;
+  position: absolute;
+  right: 1.5em;
+}
+.page-header__burger {
+  display: inline-block;
+  height: 3px;
+  width: 30px;
+  background-color: #000;
+  margin-left: 30px;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transition: 0.3s;
+}
+
+.page-header__burger:before {
+  content: '';
+  display: inline-block;
+  height: 3px;
+  width: 30px;
+  background-color: #000;
+  position: absolute;
+  right: 0;
+  top: -8px;
+  transition: 0.3s;
+}
+.page-header__burger:after {
+  content: '';
+  display: inline-block;
+  height: 3px;
+  width: 30px;
+  background-color: #000;
+  position: absolute;
+  right: 0;
+  bottom: -8px;
+  transition: 0.3s;
+}
+
+.page-header__burger--active {
+  background-color: transparent;
+}
+.page-header__burger--active:before {
+  top: 0;
+  width: 40px;
+  transform: rotate(-45deg);
+  transition: 0.3s;
+}
+.page-header__burger--active:after {
+  top: 0;
+  width: 40px;
+  transform: rotate(45deg);
+  transition: 0.3s;
+}
+
 
 @media screen and (max-width: 1280px) {
   #banner > article h1 {
@@ -436,6 +624,31 @@ ul li {
   }
 }
 @media screen and (max-width: 980px) {
+/*  .modal, .modal_bg {
+    display: none !important;
+  }*/
+  #header nav {
+    position: fixed;
+    width: 80%;
+    height: 100%;
+    background-color: #fff;
+  }
+  #header nav > ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 4em;
+    padding-left: 2em;
+  }
+  #header nav > ul > li {
+    margin-left: 0;
+  }
+  #header nav > ul > li a {
+    font-size: 1.2em;
+  }
+  .page-header__burger-wrapper {
+    display: block;
+  }
   #banner > article h2 {
     font-size: 1.2em;
   }
@@ -507,8 +720,9 @@ ul li {
     width: 90%;
   }
   #banner {
-    height: 16.5em !important;
+    height: auto !important;
     min-height: 0em !important;
+    padding-top: 6.5em !important;
   }
   #header {
     height: 6.5em !important;
@@ -516,10 +730,28 @@ ul li {
     padding: 1em 1.5em 1em 1.5em;
     margin: 0;
   }
+  .content p {
+    font-size: 1em;
+  }
+  #three .content {
+    padding-top: 0;
+  }
+  ul.actions {
+    margin-top: 2.0em;
+    margin-bottom: 0;
+  }
   #header img {
     top: 50% !important;
     transform: translateY(-50%);
-    left: 0em !important;
+    left: 1.5em !important;
+    height: 86% !important;
+  }
+  .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: 3.0em;
+  }
+  .swiper-pagination-bullet {
+    width: .8em;
+    height: .8em;
   }
   #header nav {
     right: 0;
@@ -559,5 +791,37 @@ ul li {
   }
   .swiper-slide {
     padding: 0 7% !important;
+  }
+}
+@media screen and (max-width: 980px) and (orientation: landscape) {
+  body {
+    font-size: 2vw;
+  }
+  .swiper-slide img {
+    width: auto;
+    height: 65vh;
+  }
+  .posts .post {
+    width: 48%;
+  }
+  .posts {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+  }
+  .wp-block-columns {
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    -o-flex-direction: row;
+    flex-direction: row;
+    justify-content: center;
+    -ms-align-items: center;
+    align-items: center;
+  }
+  .content img {
+    width: 100%;
   }
 }
